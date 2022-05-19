@@ -9,19 +9,35 @@ on:
 jobs:
 
   build:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v3
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
 
-        - name: login to Dockerhub
-          uses: docker/login-action@v1
-          with:
-            username: ${{ secrets.DOCKERHUB_USERNAME }}
-            password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: login to Dockerhub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-        - name: build and push
-          id: docker_build
-          uses: docker/build-push-action@v2
-          with:
-            push: true
-            tags: yerobalg/php-hello-world:latest
+      - name: build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: yerobalg/php-hello-world:latest
+          
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Connect to EC2 with SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.AWS_HOST }}
+          username: ${{ secrets.AWS_USERNAME }}
+          key: ${{ secrets.AWS_PRIVATE_KEY }}
+          port: 22
+          script: |
+            sudo docker pull yerobalg/php-hello-world:latest
+            sudo docker run -d -p 80:80 yerobalg/php-hello-world:latest
