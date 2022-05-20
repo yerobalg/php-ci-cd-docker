@@ -39,9 +39,8 @@ jobs:
           key: ${{ secrets.AWS_PRIVATE_KEY }}
           port: 22
           script: |
-            sudo su
-            docker container stop yerobalg/php-hello-world
-            docker rm yerobalg/php-hello-world
-            docker pull yerobalg/php-hello-world:latest
-            docker container create --name yerobalg/php-hello-world --publish 80:80 yerobalg/php-hello-world
-            docker container start yerobalg/php-hello-world
+            sudo docker container stop yerobalg/php-hello-world
+            sudo docker rm yerobalg/php-hello-world
+            sudo docker pull yerobalg/php-hello-world:latest
+            sudo docker container create --name yerobalg/php-hello-world --publish 80:80 yerobalg/php-hello-world
+            sudo docker container start yerobalg/php-hello-world
