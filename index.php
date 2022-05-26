@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <h5><?= "Hello sekai! v5" ?></h5>
+  <h5><?= "Hello sekai! v6" ?></h5>
 </body>
 
 </html>
