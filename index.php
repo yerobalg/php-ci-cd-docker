@@ -5,11 +5,11 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hello Sekai</title>
+  <title>Hello World</title>
 </head>
 
 <body>
-  <h5><?= "Hello sekai! v8" ?></h5>
+  <h1><?= "Hello world! v20" ?></h1>
 </body>
 
 </html>
