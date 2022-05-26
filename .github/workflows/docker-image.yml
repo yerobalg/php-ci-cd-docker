@@ -48,6 +48,6 @@ jobs:
           script: |
             sudo docker container stop php-hello-world
             sudo docker rm php-hello-world
-            sudo docker pull yerobalg/php-hello-world:latest
-            sudo docker container create --name php-hello-world --publish 80:80 yerobalg/php-hello-world:latest
+            sudo docker pull yerobalg/php-hello-world:v${{ github.run_number }}
+            sudo docker container create --name php-hello-world --publish 80:80 yerobalg/php-hello-world:v${{ github.run_number }}
             sudo docker container start php-hello-world
