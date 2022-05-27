@@ -30,14 +30,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Set short sha
-        id: vars
-        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-      
-      - name: Check short sha
-        run: echo ${{ steps.vars.outputs.sha_short }}
-      
+    steps:      
       - name: Connect to EC2 with SSH
         uses: appleboy/ssh-action@master
         with:
